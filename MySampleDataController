@@ -1,0 +1,24 @@
+<?php
+App::uses('AppController', 'Controller');
+
+class MySampleDataController extends AppController {
+function Car_list(){
+   $this->layout = "Sample";
+   $this->set("header_for_layout","Sample Application");
+   $this->set("footer_for_layout","copyright by SYODA-Tuyano. 2011.");
+
+   $datas = $this->MySampleData->find('list');
+   $this->set('datas',$datas);
+  }
+
+public function reg() {
+
+    $this->layout = "Sample";
+    $this->set("header_for_layout", "Sample Application");
+    $this->set("footer_for_layout",
+        "copyright by SYODA-Tuyano. 2011.");
+    // post時の処理
+    if ($this->request->is('post')) {
+      $this->MySampleData->save($this->request->data);
+    }
+}
