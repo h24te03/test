@@ -1,0 +1,26 @@
+<?php
+App::uses('AppModel', 'Model');
+
+class MySampleData extends AppModel {
+  public $validate = array(
+    'name'=>array(
+      'rule'=>'isUnique',
+      'required'=>true,
+      'message'=>'必ずユニークな名前を入力してください。'
+    ),
+    'mail'=>array(
+      'rule'=>array('checkMyRule',2),
+      'message'=>'偶数を入力してください。'
+    ),
+    'tel'=>array(
+      'rule'=>'alphaNumeric',
+      'required'=>true,
+      'message'=>'半角英数字で入力ください。-は付けないでください。'
+    )
+  );
+
+  function checkMyRule($val,$num){
+        $n = $val['mail'];
+        return $n % $num == 0;
+  }
+}
